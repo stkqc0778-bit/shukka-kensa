@@ -1,6 +1,6 @@
 // 出荷検査記録 Service Worker
 // 更新のたびに VERSION の番号を上げる
-const VERSION = 'shukka-kensa-v3';
+const VERSION = 'shukka-kensa-v4';
 const FILES = ['./', './index.html', './config.js', './zumen.js', './exceljs.min.js',
   './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
