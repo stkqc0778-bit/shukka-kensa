@@ -1,6 +1,6 @@
 // 出荷検査記録 Service Worker
 // 更新のたびに VERSION の番号を上げる
-const VERSION = 'shukka-kensa-v13';
+const VERSION = 'shukka-kensa-v14';
 const FILES = ['./', './index.html', './config.js', './zumen.js', './exceljs.min.js',
   './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
@@ -20,7 +20,7 @@ self.addEventListener('fetch', e => {
     return;
   }
   // 図面画像（zu/）は一度読み込んだら端末に保存（バージョンが変わっても残す）
-  if (u.pathname.indexOf('/zu/') >= 0) {
+  if (u.pathname.indexOf('/zu/') >= 0 || /\/z[0-9a-f]{12}\.png$/.test(u.pathname)) {
     e.respondWith(caches.open('shukka-zumen').then(c => c.match(e.request).then(r => r || fetch(e.request).then(x => { if (x.ok) c.put(e.request, x.clone()); return x; }))));
     return;
   }
